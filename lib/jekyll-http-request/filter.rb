@@ -5,7 +5,7 @@ require "net/http"
 
 module JekyllHTTPRequest
   module Filter
-    def http_request(url, method, headers, body)
+    def http_request(url, method = "GET", headers = "", body = "")
       key = url + method + headers + body
       JekyllHTTPRequest.cache.getset(key) do
         Jekyll.logger.debug("requesting %s %s %s %s" % [method, url, headers, body])

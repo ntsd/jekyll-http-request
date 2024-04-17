@@ -1,0 +1,4 @@
+---
+---
+{% capture jsonBody %}{ "foo": "bar" }{% endcapture %}
+{{ 'http://example.com' | http_request: 'POST', 'header:value|header2:value2', jsonBody }}

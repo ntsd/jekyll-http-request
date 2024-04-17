@@ -26,11 +26,11 @@ Alternatively using git repository for gem `gem "jekyll-http-request", :git => "
 ```
 
 - `url`: url of the request.
-- `http_method`: the HTTP method, only support GET and POST for now.
-- `headers`: headers will separate by pipe (|) and separated key-value by colon (:).
-- `body`: http request body.
+- `http_method`: (optional) the HTTP method, only support GET and POST for now.
+- `headers`: (optional) headers will separate by pipe (|) and separated key-value by colon (:).
+- `body`: (optional) http request body.
 
-\*\* The liquid filter required all parameters, set to empty string if not provided.
+\*\* The liquid filter left side parameters, set to empty string if not provided.
 
 The response will cache to [Jekyll::Cache](https://jekyllrb.com/tutorials/cache-api/) for the next time it call the same request. The cache will clear after the site init.
 
@@ -39,6 +39,8 @@ The response will cache to [Jekyll::Cache](https://jekyllrb.com/tutorials/cache-
 ### HTTP GET
 
 ```rb
+{{ 'http://httpbin.org/anything' | http_request }}
+# or
 {{ 'http://httpbin.org/anything' | http_request: 'GET', '', '' }}
 ```
 
@@ -47,13 +49,13 @@ The response will cache to [Jekyll::Cache](https://jekyllrb.com/tutorials/cache-
 if the url starts with `https` will force request with ssl.
 
 ```rb
-{{ 'https://httpbin.org/anything' | http_request: 'GET', '', '' }}
+{{ 'https://httpbin.org/anything' | http_request }}
 ```
 
 ### HTTP POST
 
 ```rb
-{{ 'http://httpbin.org/anything' | http_request: 'POST', '', '' }}
+{{ 'http://httpbin.org/anything' | http_request: 'POST' }}
 ```
 
 ### With headers
@@ -61,6 +63,8 @@ if the url starts with `https` will force request with ssl.
 headers will separate by pipe (|) and separated key-value by colon (:).
 
 ```rb
+{{ 'http://httpbin.org/anything' | http_request: 'GET', 'key:value|key2:value2' }}
+# of
 {{ 'http://httpbin.org/anything' | http_request: 'GET', 'key:value|key2:value2', '' }}
 ```
 
