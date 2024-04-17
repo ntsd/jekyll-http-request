@@ -42,8 +42,8 @@ module JekyllHTTPRequest
           http.request(req)
         }
 
-        # return response body
-        res.body
+        # return response body and force encoding UTF-8
+        return res.body.force_encoding("UTF-8")
       end
     end
   end

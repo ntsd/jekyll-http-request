@@ -4,6 +4,8 @@
 
 Jekyll Liquid Filter for HTTP requests, helps get HTTP response data to the page content and cache.
 
+> since many people using UTF-8 nowaday, so I have decide to force encoding the response body to UTF-8.
+
 ## Installation
 
 1. Add `gem 'jekyll-http-request'` to your site's Gemfile.
@@ -28,7 +30,7 @@ Alternatively using git repository for gem `gem "jekyll-http-request", :git => "
 - `headers`: headers will separate by pipe (|) and separated key-value by colon (:).
 - `body`: http request body.
 
-** The liquid filter required all parameters, set to empty string if not provided.
+\*\* The liquid filter required all parameters, set to empty string if not provided.
 
 The response will cache to [Jekyll::Cache](https://jekyllrb.com/tutorials/cache-api/) for the next time it call the same request. The cache will clear after the site init.
 
@@ -83,4 +85,12 @@ example fetch Github README.md then render by markdownify
 
 ```rb
 {{ 'https://raw.githubusercontent.com/ntsd/jekyll-http-request/main/README.md' | http_request: 'GET', '', '' | markdownify }}
+```
+
+### Unit Testing
+
+To run unit test use `rake` command.
+
+```rb
+rake
 ```
